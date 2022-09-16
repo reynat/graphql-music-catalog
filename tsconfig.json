@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "es2016",
+      "module": "commonjs",
+      "strict": false,
+      "outDir": "dist",
+      "sourceMap": true,
+      "noImplicitAny": false,
+      "jsx": "react",
+      "skipLibCheck": true
+    },
+    "exclude": ["node_modules", "dist"],
+    "include": ["src/**/*"]
+  }
