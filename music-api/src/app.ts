@@ -18,7 +18,12 @@ app.get('/albums', (req: express.Request, res: express.Response) => {
 
 app.get('/albums/:id', (req: express.Request, res: express.Response) => {
   console.log(`Received request for album id ${req.params.id}`)
-  res.status(200).send(getAlbumById(req.params.id));
+  const result = getAlbumById(req.params.id);
+  if (result) {
+    res.status(200).send(result);
+  } else {
+    res.status(404).send();
+  }
 });
 
 app.get('/artists', (req: express.Request, res: express.Response) => {
@@ -28,7 +33,12 @@ app.get('/artists', (req: express.Request, res: express.Response) => {
 
 app.get('/artists/:id', (req: express.Request, res: express.Response) => {
   console.log(`Received request for artist id ${req.params.id}`)
-  res.status(200).send(getArtistById(req.params.id));
+  const result = getArtistById(req.params.id);
+  if (result) {
+    res.status(200).send(result);
+  } else {
+    res.status(404).send();
+  }
 });
 
 app.listen(port, () => {
