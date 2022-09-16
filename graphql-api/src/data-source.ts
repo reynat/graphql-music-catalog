@@ -2,16 +2,16 @@ import { RESTDataSource } from "apollo-datasource-rest";
 import { ApolloError } from "apollo-server-core";
 
 export type ArtistResponse = {
-    id: string;
-    name: string;
-    country: string;
-}
+  id: string;
+  name: string;
+  country: string;
+};
 
 export type AlbumResponse = {
-    id: string;
-    title: string;
-    artist: string;
-}
+  id: string;
+  title: string;
+  artist: string;
+};
 
 export class MusicAPI extends RESTDataSource {
   constructor() {
