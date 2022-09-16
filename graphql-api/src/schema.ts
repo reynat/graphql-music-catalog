@@ -1,12 +1,12 @@
-import { gql } from 'apollo-server';
+import { gql } from "apollo-server";
 
 export const typeDefs = gql`
-    type Album {
-        title: String!
-    }
+  type Album {
+    title: String!
+  }
 
-    type Query {
-        albums: [Album]!
-        album(id: ID!): Album
-    }
-`
+  type Query {
+    albums: [Album]!
+    album(id: ID!): Album
+  }
+`;
