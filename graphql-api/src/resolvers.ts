@@ -1,13 +1,20 @@
 import { Context } from "./app";
-import { QueryAlbumArgs } from "./generated/graphql";
+import * as DataSourceTypes from "./data-source";
+import * as Schema from "./generated/graphql";
 
 export const resolvers = {
   Query: {
-    albums: (_parent: any, _args: any, context: Context) => {
-      return context.dataSources.musicAPI.getAlbums();
+    albums: (_parent: any, _args: any, { dataSources }: Context) => {
+      return dataSources.musicAPI.getAlbums();
     },
-    album: (_parent: any, args: QueryAlbumArgs, context: Context) => {
-      return context.dataSources.musicAPI.getAlbum(args.id);
+    album: (_parent: any, args: Schema.QueryAlbumArgs, { dataSources }: Context) => {
+      return dataSources.musicAPI.getAlbum(args.id);
     },
   },
+  Album: {
+    artist: (parent: DataSourceTypes.AlbumResponse, _args: any, { dataSources }: Context) => {
+        const artistId = parent.artist;
+        return dataSources.musicAPI.getArtist(artistId);
+    }
+  }
 };
