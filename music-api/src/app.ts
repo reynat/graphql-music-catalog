@@ -12,18 +12,22 @@ app.get('/', (req: express.Request, res: express.Response) => {
 });
 
 app.get('/albums', (req: express.Request, res: express.Response) => {
+  console.log("Received request for /albums")
   res.status(200).send(albums);
 });
 
 app.get('/albums/:id', (req: express.Request, res: express.Response) => {
+  console.log(`Received request for album id ${req.params.id}`)
   res.status(200).send(getAlbumById(req.params.id));
 });
 
 app.get('/artists', (req: express.Request, res: express.Response) => {
+  console.log("Received request for /artists")
   res.status(200).send(artists);
 });
 
 app.get('/artists/:id', (req: express.Request, res: express.Response) => {
+  console.log(`Received request for artist id ${req.params.id}`)
   res.status(200).send(getArtistById(req.params.id));
 });
 
