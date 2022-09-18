@@ -1,6 +1,7 @@
 import { ApolloServer, gql } from "apollo-server";
 import { mock } from "jest-mock-extended";
-import { AlbumResponse, MusicAPI } from "./data-source";
+import { MusicAPI } from "./data-source";
+import { AlbumResponse } from "./data-source-types";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./schema";
 

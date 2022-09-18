@@ -41,7 +41,7 @@ export const resolvers = {
         | DataSourceTypes.ArtistNotFoundError
     ) => {
       if (DataSourceTypes.isArtistNotFoundError(parent)) {
-        return "ArtistNotFound";
+        return "ArtistNotFoundError";
       }
       return "Album";
     },
