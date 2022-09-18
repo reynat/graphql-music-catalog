@@ -36,13 +36,24 @@ export const resolvers = {
   },
   CreateAlbumPayload: {
     __resolveType: (parent: DataSourceTypes.CreateAlbumResponse) => {
+      if (DataSourceTypes.isCreateAlbumError(parent)) {
+        return "CreateAlbumFailure";
+      }
+      return "CreateAlbumSuccess";
+    },
+  },
+  CreateAlbumSuccess: {
+    album: (parent: DataSourceTypes.NewAlbum) => parent,
+  },
+  CreateAlbumFailure: {
+    error: (parent: DataSourceTypes.CreateAlbumError) => parent,
+  },
+  CreateAlbumError: {
+    __resolveType: (parent: DataSourceTypes.CreateAlbumError) => {
       if (DataSourceTypes.isArtistNotFoundError(parent)) {
         return "ArtistNotFoundError";
       }
-      if (DataSourceTypes.isDuplicateAlbumError(parent)) {
-        return "DuplicateAlbumError";
-      }
-      return "Album";
+      return "DuplicateAlbumError";
     },
   },
   ArtistNotFoundError: {
