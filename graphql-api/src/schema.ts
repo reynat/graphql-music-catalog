@@ -24,9 +24,9 @@ export const typeDefs = gql`
     title: String!
   }
 
-  union CreateAlbumPayload = Album | ArtistNotFound
+  union CreateAlbumPayload = Album | ArtistNotFoundError
 
-  type ArtistNotFound {
+  type ArtistNotFoundError {
     message: String!
   }
 `;
