@@ -39,7 +39,15 @@ export type CreateAlbumInput = {
   title: Scalars["String"];
 };
 
-export type CreateAlbumPayload = Album | ArtistNotFoundError;
+export type CreateAlbumPayload =
+  | Album
+  | ArtistNotFoundError
+  | DuplicateAlbumError;
+
+export type DuplicateAlbumError = {
+  __typename?: "DuplicateAlbumError";
+  message: Scalars["String"];
+};
 
 export type Mutation = {
   __typename?: "Mutation";

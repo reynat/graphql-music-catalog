@@ -24,9 +24,13 @@ export const typeDefs = gql`
     title: String!
   }
 
-  union CreateAlbumPayload = Album | ArtistNotFoundError
+  union CreateAlbumPayload = Album | ArtistNotFoundError | DuplicateAlbumError
 
   type ArtistNotFoundError {
+    message: String!
+  }
+
+  type DuplicateAlbumError {
     message: String!
   }
 `;
