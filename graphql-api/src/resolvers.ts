@@ -35,15 +35,20 @@ export const resolvers = {
     },
   },
   CreateAlbumPayload: {
-    __resolveType: (
-      parent:
-        | DataSourceTypes.CreateAlbumResponse
-        | DataSourceTypes.ArtistNotFoundError
-    ) => {
+    __resolveType: (parent: DataSourceTypes.CreateAlbumResponse) => {
       if (DataSourceTypes.isArtistNotFoundError(parent)) {
         return "ArtistNotFoundError";
       }
+      if (DataSourceTypes.isDuplicateAlbumError(parent)) {
+        return "DuplicateAlbumError";
+      }
       return "Album";
     },
+  },
+  ArtistNotFoundError: {
+    message: () => "Artist not found",
+  },
+  DuplicateAlbumError: {
+    message: () => "Album already exists",
   },
 };

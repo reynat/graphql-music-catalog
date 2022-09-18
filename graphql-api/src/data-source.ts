@@ -3,8 +3,8 @@ import { ApolloError } from "apollo-server-core";
 import {
   AlbumResponse,
   ArtistResponse,
+  CreateAlbumError,
   CreateAlbumResponse,
-  ArtistNotFoundError,
 } from "./data-source-types";
 
 export class MusicAPI extends RESTDataSource {
@@ -44,19 +44,24 @@ export class MusicAPI extends RESTDataSource {
   async createAlbum(
     title: string,
     artistId: string
-  ): Promise<CreateAlbumResponse | ArtistNotFoundError | undefined> {
+  ): Promise<CreateAlbumResponse | undefined> {
     return this.post("/albums", {
       title,
       artistId,
     })
       .then((album) => album)
-      .catch((error: ApolloError) => {
+      .catch((error: ApolloError): CreateAlbumError | undefined => {
         if (error.extensions.response?.status === 404) {
           return {
-            message: "Artist not found",
+            kind: "artist-not-found-error",
           };
         }
-        console.log(error, "Error creating album");
+        if (error.extensions.response?.status === 422) {
+          return {
+            kind: "duplicate-album-error",
+          };
+        }
+        console.log(error, "Error creating album"); // Exceptional errors
         return;
       });
   }
