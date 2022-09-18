@@ -59,7 +59,7 @@ app.post("/albums", (req: express.Request, res: express.Response) => {
   if (result) {
     res.status(200).send(result);
   } else {
-    res.status(400).send("Invalid artist id");
+    res.status(404).send("Invalid artist id");
   }
 });
 
