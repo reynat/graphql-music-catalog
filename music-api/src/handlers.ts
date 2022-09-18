@@ -19,6 +19,7 @@ export const createNewAlbum = (artistId: string, albumTitle: string) => {
   return;
 };
 
-export const isDuplicateAlbum = (artistId: string, albumTitle: string) => 
-albums.find((album) => album.title === albumTitle && album.artist === artistId)
-
+export const isDuplicateAlbum = (artistId: string, albumTitle: string) =>
+  albums.find(
+    (album) => album.title === albumTitle && album.artist === artistId
+  );

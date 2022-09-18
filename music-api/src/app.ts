@@ -1,5 +1,10 @@
 import express from "express";
-import { getAlbumById, createNewAlbum, getArtistById, isDuplicateAlbum } from "./handlers";
+import {
+  getAlbumById,
+  createNewAlbum,
+  getArtistById,
+  isDuplicateAlbum,
+} from "./handlers";
 import { albums, artists } from "./mock-data";
 
 const app: express.Application = express();
@@ -42,7 +47,7 @@ app.post("/albums", (req: express.Request, res: express.Response) => {
 
   if (isDuplicateAlbum(newAlbumArtistId, newAlbumTitle)) {
     return res.status(422).send("Duplicate album");
-  };
+  }
 
   const result = createNewAlbum(newAlbumArtistId, newAlbumTitle);
 
