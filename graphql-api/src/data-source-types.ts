@@ -28,6 +28,11 @@ type DuplicateAlbumError = {
   kind: "duplicate-album-error";
 };
 
+export const isCreateAlbumError = (
+  response: CreateAlbumResponse
+): response is CreateAlbumError =>
+  (response as CreateAlbumError).kind !== undefined;
+
 export const isArtistNotFoundError = (
   response: CreateAlbumResponse
 ): response is ArtistNotFoundError =>

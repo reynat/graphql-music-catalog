@@ -25,7 +25,7 @@ export const typeDefs = gql`
   }
 
   union CreateAlbumPayload = CreateAlbumSuccess | CreateAlbumFailure
-  
+
   type CreateAlbumSuccess {
     album: Album!
   }
