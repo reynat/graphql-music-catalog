@@ -12,6 +12,12 @@ export type AlbumResponse = {
   artist: string;
 };
 
+export type CreateAlbumResponse = {
+  id: string;
+  title: string;
+  artist: string;
+};
+
 export class MusicAPI extends RESTDataSource {
   constructor() {
     super();
@@ -28,5 +34,15 @@ export class MusicAPI extends RESTDataSource {
 
   async getArtist(id: string): Promise<ArtistResponse | undefined> {
     return this.get(`/artists/${id}`);
+  }
+
+  async createAlbum(
+    title: string,
+    artistId: string
+  ): Promise<CreateAlbumResponse | undefined> {
+    return this.post("/albums", {
+      title,
+      artistId,
+    });
   }
 }

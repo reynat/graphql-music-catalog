@@ -25,4 +25,16 @@ export const resolvers = {
       return dataSources.musicAPI.getArtist(artistId);
     },
   },
+  Mutation: {
+    createAlbum: (
+      _parent: any,
+      { input }: Schema.MutationCreateAlbumArgs,
+      { dataSources }: Context
+    ) => {
+      return dataSources.musicAPI.createAlbum(
+        input.title,
+        input.artistId
+      );
+    },
+  },
 };
