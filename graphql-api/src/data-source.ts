@@ -1,23 +1,11 @@
 import { RESTDataSource } from "apollo-datasource-rest";
 import { ApolloError } from "apollo-server-core";
-
-export type ArtistResponse = {
-  id: string;
-  name: string;
-  country: string;
-};
-
-export type AlbumResponse = {
-  id: string;
-  title: string;
-  artist: string;
-};
-
-export type CreateAlbumResponse = {
-  id: string;
-  title: string;
-  artist: string;
-};
+import {
+  AlbumResponse,
+  ArtistResponse,
+  CreateAlbumResponse,
+  ArtistNotFoundError,
+} from "./data-source-types";
 
 export class MusicAPI extends RESTDataSource {
   constructor() {
@@ -56,10 +44,20 @@ export class MusicAPI extends RESTDataSource {
   async createAlbum(
     title: string,
     artistId: string
-  ): Promise<CreateAlbumResponse | undefined> {
+  ): Promise<CreateAlbumResponse | ArtistNotFoundError | undefined> {
     return this.post("/albums", {
       title,
       artistId,
-    });
+    })
+      .then((album) => album)
+      .catch((error: ApolloError) => {
+        if (error.extensions.response?.status === 404) {
+          return {
+            message: "Artist not found",
+          };
+        }
+        console.log(error, "Error creating album");
+        return;
+      });
   }
 }
