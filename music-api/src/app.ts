@@ -1,25 +1,9 @@
 import express from "express";
+import { getAlbumById, createNewAlbum, getArtistById, isDuplicateAlbum } from "./handlers";
 import { albums, artists } from "./mock-data";
 
 const app: express.Application = express();
 const port = 8001;
-
-const getArtistById = (artistId: string) =>
-  artists.find((artist) => artist.id === artistId);
-const getAlbumById = (albumId: string) =>
-  albums.find((album) => album.id === albumId);
-const createNewAlbum = (artistId: string, albumTitle: string) => {
-  if (getArtistById(artistId)) {
-    const newAlbum = {
-      id: `album-${albums.length + 1}`,
-      title: albumTitle,
-      artist: artistId,
-    };
-    albums.push(newAlbum);
-    return newAlbum;
-  }
-  return;
-};
 
 app.use(express.json());
 
@@ -45,6 +29,7 @@ app.get("/albums/:id", (req: express.Request, res: express.Response) => {
 app.post("/albums", (req: express.Request, res: express.Response) => {
   const validRequestBody = (req: express.Request) =>
     req.body.title && req.body.artistId;
+
   if (!validRequestBody(req)) {
     return res.status(400).send("Album title and artist id must be provided");
   }
@@ -54,6 +39,11 @@ app.post("/albums", (req: express.Request, res: express.Response) => {
   console.log(
     `Received request to create new album ${newAlbumTitle} for artist ${newAlbumArtistId}`
   );
+
+  if (isDuplicateAlbum(newAlbumArtistId, newAlbumTitle)) {
+    return res.status(422).send("Duplicate album");
+  };
+
   const result = createNewAlbum(newAlbumArtistId, newAlbumTitle);
 
   if (result) {
