@@ -83,7 +83,7 @@
             name
           }
         } 
-        ... on ArtistNotError {
+        ... on ArtistNotFoundError {
             message
         }
       }

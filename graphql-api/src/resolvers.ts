@@ -1,5 +1,5 @@
 import { Context } from "./app";
-import * as DataSourceTypes from "./data-source";
+import * as DataSourceTypes from "./data-source-types";
 import * as Schema from "./generated/graphql";
 
 export const resolvers = {
@@ -26,15 +26,24 @@ export const resolvers = {
     },
   },
   Mutation: {
-    createAlbum: (
+    createAlbum: async (
       _parent: any,
       { input }: Schema.MutationCreateAlbumArgs,
       { dataSources }: Context
     ) => {
-      return dataSources.musicAPI.createAlbum(
-        input.title,
-        input.artistId
-      );
+      return dataSources.musicAPI.createAlbum(input.title, input.artistId);
+    },
+  },
+  CreateAlbumPayload: {
+    __resolveType: (
+      parent:
+        | DataSourceTypes.CreateAlbumResponse
+        | DataSourceTypes.ArtistNotFoundError
+    ) => {
+      if (DataSourceTypes.isArtistNotFoundError(parent)) {
+        return "ArtistNotFound";
+      }
+      return "Album";
     },
   },
 };
