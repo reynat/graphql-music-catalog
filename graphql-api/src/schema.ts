@@ -16,11 +16,17 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    createAlbum(input: CreateAlbumInput!): Album!
+    createAlbum(input: CreateAlbumInput!): CreateAlbumPayload!
   }
 
   input CreateAlbumInput {
     artistId: ID!
     title: String!
+  }
+
+  union CreateAlbumPayload = Album | ArtistNotFound
+
+  type ArtistNotFound {
+    message: String!
   }
 `;

@@ -29,14 +29,21 @@ export type Artist = {
   name: Scalars["String"];
 };
 
+export type ArtistNotFound = {
+  __typename?: "ArtistNotFound";
+  message: Scalars["String"];
+};
+
 export type CreateAlbumInput = {
   artistId: Scalars["ID"];
   title: Scalars["String"];
 };
 
+export type CreateAlbumPayload = Album | ArtistNotFound;
+
 export type Mutation = {
   __typename?: "Mutation";
-  createAlbum: Album;
+  createAlbum: CreateAlbumPayload;
 };
 
 export type MutationCreateAlbumArgs = {
