@@ -83,7 +83,7 @@
             name
           }
         } 
-        ... on ArtistNotError {
+        ... on ArtistNotFoundError {
             message
         }
       }
@@ -99,10 +99,11 @@
 ---
 <a name=multiple-business-error></a>
 ## Model multiple business errors
-1. Let's include the business error that happens when the user attempts to create a duplicate album. Check out to GIT TAG for skeleton code.
+1. Run `git checkout 6-multiple-business-errors-code`.
+2. Let's include the business error that happens when the user attempts to create a duplicate album.
     - Note that there are data source types that capture the business errors returned from the Music API
-2. Update the schema to model the possibility of having two business errors and update the resolvers.
-3. Run `git checkout 6-multiple-business-errors-solution` to see a sample solution.
+3. Update the schema to model the possibility of having two business errors and update the resolvers.
+4. Run `git checkout 6-multiple-business-errors-solution` to see a sample solution.
 
 ---
 <a name="complex-mutation-payload"></a>
