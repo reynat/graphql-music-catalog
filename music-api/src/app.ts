@@ -34,7 +34,6 @@ app.get("/albums/:id", (req: express.Request, res: express.Response) => {
 app.post("/albums", (req: express.Request, res: express.Response) => {
   const validRequestBody = (req: express.Request) =>
     req.body.title && req.body.artistId;
-
   if (!validRequestBody(req)) {
     return res.status(400).send("Album title and artist id must be provided");
   }
