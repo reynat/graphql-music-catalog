@@ -20,7 +20,27 @@ export type Scalars = {
 
 export type Album = {
   __typename?: "Album";
+  artist: Artist;
   title: Scalars["String"];
+};
+
+export type Artist = {
+  __typename?: "Artist";
+  name: Scalars["String"];
+};
+
+export type CreateAlbumInput = {
+  artistId: Scalars["ID"];
+  title: Scalars["String"];
+};
+
+export type Mutation = {
+  __typename?: "Mutation";
+  createAlbum: Album;
+};
+
+export type MutationCreateAlbumArgs = {
+  input: CreateAlbumInput;
 };
 
 export type Query = {
