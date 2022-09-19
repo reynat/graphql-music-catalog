@@ -10,17 +10,30 @@ export type AlbumResponse = {
   artist: string;
 };
 
-export type CreateAlbumResponse = {
+export type NewAlbum = {
   id: string;
   title: string;
   artist: string;
 };
 
-export type ArtistNotFoundError = {
-  message: string;
+export type CreateAlbumResponse = NewAlbum | CreateAlbumError;
+
+export type CreateAlbumError = ArtistNotFoundError | DuplicateAlbumError;
+
+type ArtistNotFoundError = {
+  kind: "artist-not-found-error";
+};
+
+type DuplicateAlbumError = {
+  kind: "duplicate-album-error";
 };
 
 export const isArtistNotFoundError = (
-  error: ArtistNotFoundError | CreateAlbumResponse
-): error is ArtistNotFoundError =>
-  (error as ArtistNotFoundError).message !== undefined;
+  response: CreateAlbumResponse
+): response is ArtistNotFoundError =>
+  (response as ArtistNotFoundError).kind === "artist-not-found-error";
+
+export const isDuplicateAlbumError = (
+  response: CreateAlbumResponse
+): response is DuplicateAlbumError =>
+  (response as DuplicateAlbumError).kind === "duplicate-album-error";

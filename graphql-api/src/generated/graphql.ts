@@ -1,8 +1,14 @@
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -13,45 +19,43 @@ export type Scalars = {
 };
 
 export type Album = {
-  __typename?: 'Album';
+  __typename?: "Album";
   artist: Artist;
-  title: Scalars['String'];
+  title: Scalars["String"];
 };
 
 export type Artist = {
-  __typename?: 'Artist';
-  name: Scalars['String'];
+  __typename?: "Artist";
+  name: Scalars["String"];
 };
 
 export type ArtistNotFoundError = {
-  __typename?: 'ArtistNotFoundError';
-  message: Scalars['String'];
+  __typename?: "ArtistNotFoundError";
+  message: Scalars["String"];
 };
 
 export type CreateAlbumInput = {
-  artistId: Scalars['ID'];
-  title: Scalars['String'];
+  artistId: Scalars["ID"];
+  title: Scalars["String"];
 };
 
 export type CreateAlbumPayload = Album | ArtistNotFoundError;
 
 export type Mutation = {
-  __typename?: 'Mutation';
+  __typename?: "Mutation";
   createAlbum: CreateAlbumPayload;
 };
-
 
 export type MutationCreateAlbumArgs = {
   input: CreateAlbumInput;
 };
 
 export type Query = {
-  __typename?: 'Query';
+  __typename?: "Query";
   album?: Maybe<Album>;
   albums: Array<Maybe<Album>>;
 };
 
-
 export type QueryAlbumArgs = {
-  id: Scalars['ID'];
+  id: Scalars["ID"];
 };
