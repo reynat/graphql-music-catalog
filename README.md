@@ -45,7 +45,8 @@ yarn test
 ```
 
 ## TO DO
-- Include custom scalar
-- Include custom enum
-- Include pagination
-- RESTDataSource caching + batching
+- Custom scalar
+- Custom enum
+- Custom directive
+- RESTDataSource caching -> hit music api with a put
+- RESTDataSource batching
