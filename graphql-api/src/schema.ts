@@ -25,13 +25,13 @@ export const typeDefs = gql`
   }
 
   union CreateAlbumPayload = CreateAlbumSuccess | CreateAlbumFailure
-  
+
   type CreateAlbumSuccess {
     album: Album!
   }
 
   type CreateAlbumFailure {
-    error: CreateAlbumError!
+    errors: [CreateAlbumError!]!
   }
 
   interface CreateAlbumError {
