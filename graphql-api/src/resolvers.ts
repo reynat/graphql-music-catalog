@@ -46,7 +46,7 @@ export const resolvers = {
     album: (parent: DataSourceTypes.NewAlbum) => parent,
   },
   CreateAlbumFailure: {
-    error: (parent: DataSourceTypes.CreateAlbumError) => parent,
+    errors: (parent: DataSourceTypes.CreateAlbumError) => [parent],
   },
   CreateAlbumError: {
     __resolveType: (parent: DataSourceTypes.CreateAlbumError) => {

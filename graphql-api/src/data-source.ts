@@ -20,25 +20,11 @@ export class MusicAPI extends RESTDataSource {
   async getAlbum(id: string): Promise<AlbumResponse | undefined> {
     return this.get(`/albums/${id}`)
       .then((albumResponse) => albumResponse)
-      .catch((error: ApolloError) => {
-        if (error.extensions.response?.status === 404) {
-          console.log(`Album id ${id} not found`);
-          return;
-        }
-        return error;
-      });
   }
 
   async getArtist(id: string): Promise<ArtistResponse | undefined> {
     return this.get(`/artists/${id}`)
       .then((albumResponse) => albumResponse)
-      .catch((error: ApolloError) => {
-        if (error.extensions.response?.status === 404) {
-          console.log(`Artist id ${id} not found`);
-          return;
-        }
-        return error;
-      });
   }
 
   async createAlbum(

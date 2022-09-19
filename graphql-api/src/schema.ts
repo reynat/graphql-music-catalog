@@ -31,7 +31,7 @@ export const typeDefs = gql`
   }
 
   type CreateAlbumFailure {
-    error: CreateAlbumError!
+    errors: [CreateAlbumError!]!
   }
 
   interface CreateAlbumError {
