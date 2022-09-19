@@ -1,4 +1,5 @@
 # Part 6: Mutation Patterns
+
 1. [ Include a mutation that always succeeds ](#happy-path)
 2. [ Model a single business error ](#single-business-error)
 3. [ Model multiple business errors ](#multiple-business-errors)
@@ -6,7 +7,9 @@
 
 <a name="happy-path"></a>
 ## Include a mutation that always succeeds
-1. Let's add a mutation to our schema to allow clients to add a new album. 
+1. Run `git checkout 6-mutation-patterns-code`.
+
+2. Let's add a mutation to our schema to allow clients to add a new album. 
     ``` graphql
     type Mutation {
         createAlbum(input: CreateAlbumInput!): Album!
@@ -22,7 +25,7 @@
         >- Encapsulates the logic required for a given query/mutation
         >- Avoids breaking changes in the future
 
-2. Complete the resolver to execute the following query:
+3. Complete the resolver to execute the following query:
     ```graphql
     mutation($input: CreateAlbumInput!) {
       createAlbum(input: $input) {
@@ -43,9 +46,9 @@
     }
     ```
 
-3. Play around with the variables. What happens when you include an invalid artist id? Can you add the same album twice?
+4. Play around with the variables. What happens when you include an invalid artist id? Can you add the same album twice?
 
-4. Check out to GIT TAG to see a sample solution.
+5. Run `git checkout 6-happy-path-solution` to see a sample solution.
 
 ---
 <a name=single-business-errors></a>
@@ -91,7 +94,7 @@
 
 2. Try writing the resolver for the `CreateAlbumPayload` type. Refer to [this article](https://www.apollographql.com/docs/apollo-server/schema/unions-interfaces/#resolving-a-union) to learn about resolving unions.
 
-3. Check out to GIT TAG to see a sample solution.
+3. Run `git checkout 6-single-business-error-solution` to see a sample solution.
 
 ---
 <a name=multiple-business-error></a>
@@ -99,11 +102,12 @@
 1. Let's include the business error that happens when the user attempts to create a duplicate album. Check out to GIT TAG for skeleton code.
     - Note that there are data source types that capture the business errors returned from the Music API
 2. Update the schema to model the possibility of having two business errors and update the resolvers.
-3. Check out to GIT TAG to see a sample solution.
+3. Run `git checkout 6-multiple-business-errors-solution` to see a sample solution.
+
 ---
 <a name="complex-mutation-payload"></a>
 ## Encapsulate success and failure cases in their own types
-1. Check out to GIT TAG for skeleton code and observe the pattern used to model success and failure cases.
+1. Run `git checkout 6-complex-payload-code` for skeleton code and observe the pattern used to model success and failure cases.
 
     >In the Candidate Graph, this pattern is commonly used for mutations and treatment of results. Some features to note are:
       >- The result payload is a union of success and failure. In many cases unions are problematic because additions to them are breaking, however, the assumption here is that a mutation can only ever succeed or fail - ever.
@@ -132,4 +136,4 @@
     }
     ```
 
-3. Check out to GIT TAG to see a sample solution.
+3. Run `git checkout 6-complex-payload-solution` to see a sample solution.
