@@ -1,16 +1,16 @@
 import { RESTDataSource } from "apollo-datasource-rest";
 
 export type ArtistResponse = {
-    id: string;
-    name: string;
-    country: string;
-}
+  id: string;
+  name: string;
+  country: string;
+};
 
 export type AlbumResponse = {
-    id: string;
-    title: string;
-    artist: string;
-}
+  id: string;
+  title: string;
+  artist: string;
+};
 
 export class MusicAPI extends RESTDataSource {
   constructor() {
@@ -27,6 +27,6 @@ export class MusicAPI extends RESTDataSource {
   }
 
   async getArtist(id: string): Promise<ArtistResponse | undefined> {
-    return this.get(`/artists/${id}`)
+    return this.get(`/artists/${id}`);
   }
 }

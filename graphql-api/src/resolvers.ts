@@ -7,14 +7,22 @@ export const resolvers = {
     albums: (_parent: any, _args: any, { dataSources }: Context) => {
       return dataSources.musicAPI.getAlbums();
     },
-    album: (_parent: any, args: Schema.QueryAlbumArgs, { dataSources }: Context) => {
+    album: (
+      _parent: any,
+      args: Schema.QueryAlbumArgs,
+      { dataSources }: Context
+    ) => {
       return dataSources.musicAPI.getAlbum(args.id);
     },
   },
   Album: {
-    artist: (parent: DataSourceTypes.AlbumResponse, _args: any, { dataSources }: Context) => {
-        const artistId = parent.artist;
-        return dataSources.musicAPI.getArtist(artistId);
-    }
-  }
+    artist: (
+      parent: DataSourceTypes.AlbumResponse,
+      _args: any,
+      { dataSources }: Context
+    ) => {
+      const artistId = parent.artist;
+      return dataSources.musicAPI.getArtist(artistId);
+    },
+  },
 };
