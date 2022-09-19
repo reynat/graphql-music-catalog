@@ -7,5 +7,6 @@ export const typeDefs = gql`
 
   type Query {
     albums: [Album]!
+    album(id: ID!): Album
   }
 `;
