@@ -38,8 +38,10 @@
 4. Query for  album id `album-1` and then for `album-2` and observe the responses (mock data in Music API has an incorrect id). Notice how nulls get propagated up the schema when a nested field cannot be resolved. 
 
 ## Resolver chain
-The resolver chain for the query above matches the hierarchical structure of the query itself
-![Alt Resolver chain](./resolver-chain.png)
+The resolver chain for the query above matches the hierarchical structure of the query itself. Each subchain after the split in `Query.album` is executed in parallel.
+![Alt Resolver chain](./diagrams/resolver-chain.png)
 
-In this example, parent resolvers do not process the data returned from the MusicAPI data source, so the parent type received by child resolvers are DataSourceTypes.  
-![Alt Resolver sequence diagram](./resolver-sequence-diagram.png)
+The image below is a sequence diagram of the resolver chain (the calls to `Album.title` and `Album.artist` should be in parallel). 
+  - **Parent types**: In this example, parent resolvers do not process the data returned from the MusicAPI data source, so the parent type received by child resolvers are DataSourceTypes. In more complex cases however, resolvers may process the response received from data sources before passing them on to child resolvers. In this case, declaring separate resolver types may be helpful.
+  - **Property level resolving**: The second call to the MusicAPI data source for an artist will only be invoked if the `Album.artist` resolver is called. Placing this call in the `Album.artist` prevents unnecessary calls to our MusicAPI. [This article](https://medium.com/paypal-tech/graphql-resolvers-best-practices-cd36fdbcef55) provides a good explanation on GraphQL resolvers best practices.
+![Alt Resolver sequence diagram](./diagrams/resolver-sequence-diagram.png)
