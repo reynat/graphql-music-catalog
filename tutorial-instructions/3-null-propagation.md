@@ -8,7 +8,7 @@ query {
 }
 ```
 
-2. Observe any differences in the response when the return type for the query is non-nullable.
+2. Observe any differences in the response when the return type for the `album` query is non-nullable instead.
 ```
 type Query {
     albums: [Album]!
@@ -16,6 +16,7 @@ type Query {
   }
 ```
 
+
+
 3. Revert any changes to the schema so that the return type for an album by id is nullable. 
 
-** todo: undo hiding 404 errors in data source layer

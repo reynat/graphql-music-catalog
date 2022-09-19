@@ -44,6 +44,8 @@ Tests can be run using
 yarn test
 ```
 
+Feel free to change the mock data in `music-api/src/mock-data.ts` if Taylor Swift and Blackpink aren't your cup of tea 😛.
+
 ## TO DO
 - Custom scalar
 - Custom enum
