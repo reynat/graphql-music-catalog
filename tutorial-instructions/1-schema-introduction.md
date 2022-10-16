@@ -19,12 +19,12 @@ Let's understand how the query is executed and data is collected.
 ``` json
 [
   {
-    id: "album-1",
-    title: "1989",
+    "id": "album-1",
+    "title": "1989",
   },
   {
-    id: "album-2",
-    title: "Red",
+    "id": "album-2",
+    "title": "Red",
   }
 ]
 ```
@@ -35,10 +35,10 @@ Let's understand how the query is executed and data is collected.
   "data": {
     "albums": [
         {
-            title: "1989"
+            "title": "1989"
         },
         {
-            title: "Red"
+            "title": "Red"
         }
     ]
   }
