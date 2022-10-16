@@ -18,13 +18,11 @@ export class MusicAPI extends RESTDataSource {
   }
 
   async getAlbum(id: string): Promise<AlbumResponse | undefined> {
-    return this.get(`/albums/${id}`)
-      .then((albumResponse) => albumResponse)
+    return this.get(`/albums/${id}`).then((albumResponse) => albumResponse);
   }
 
   async getArtist(id: string): Promise<ArtistResponse | undefined> {
-    return this.get(`/artists/${id}`)
-      .then((albumResponse) => albumResponse)
+    return this.get(`/artists/${id}`).then((albumResponse) => albumResponse);
   }
 
   async createAlbum(

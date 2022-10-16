@@ -3,6 +3,7 @@ import { typeDefs } from "./schema";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { MusicAPI } from "./data-source";
 import { resolvers } from "./resolvers";
+import { logErrorPlugin } from "./log-error-plugin";
 
 export interface Context {
   dataSources: DataSources;
@@ -18,7 +19,10 @@ const server = new ApolloServer({
   dataSources: () => ({
     musicAPI: new MusicAPI(),
   }),
-  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
+  plugins: [
+    ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+    logErrorPlugin,
+  ],
 });
 
 server.listen().then(({ url }) => {
