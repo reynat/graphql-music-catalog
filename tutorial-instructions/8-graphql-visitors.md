@@ -26,6 +26,8 @@ Before we get to constructing these paths, we first need to understand how Graph
 ## Abstract syntax trees
 When GraphQL receives a query, it converts it into an abstract syntax tree (AST) that conveys the the structure and content of that query. Apollo calls the AST a `document` and includes it in the `requestContext` object provided to an Apollo plugin.
 
+Run `git checkout 7-error-plugin-solution` for a good starting point.
+
 1. Create a new plugin called `queryPathsPlugin` with the code below. Don't forget to include it in `app.ts` and run `yarn`.
 ``` ts
 import { removeLoc } from "@graphql-tools/optimize";
