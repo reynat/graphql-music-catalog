@@ -193,4 +193,4 @@ export const queryPathsPlugin: ApolloServerPlugin = {
 };
 ```
 
-git checkout to see sample solution
+Run `git checkout 8-graphql-visitors-solution` to see a sample solution.
