@@ -58,19 +58,8 @@ With [GraphQL introspection](https://graphql.org/learn/introspection/), you can 
 
 This feature is powerful for building developer tooling, as can be seen in the Apollo playground. However, leaving introspection turned on in production allows bad actors to discover and exploit vulnerablilities. 
 
-For the purpose of this tutorial, you can ignore those requests by updating the plugin with the code below:
-``` Typescript
-export const logErrorPlugin: ApolloServerPlugin = ({
-    requestDidStart: async (_requestContext) => ({
-        willSendResponse: async (requestContext) => {
-            if (requestContext.request.operationName !== "IntrospectionQuery") {
-                console.log("will return a response");
-                console.log(requestContext)
-            }
-        }
-    })
-})
-```
+For the purpose of this tutorial, you can turn off this introspection queries clicking on the "Connection settings" icon on the top left corner of the playground, and turning off "Auto Update"
+![Playground connection settings](./diagrams/playground-connection-settings.png)
 
 ## Log errors 
 1. Run a query that returns a successful response. An example could be:
